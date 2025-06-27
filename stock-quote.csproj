@@ -6,6 +6,7 @@
     <RootNamespace>stock_quote</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>stock-quote</AssemblyName>
   </PropertyGroup>
 
 </Project>
