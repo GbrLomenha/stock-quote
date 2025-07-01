@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lhQfpjNq/UNpyF7yOGQaTjNl7bSNfsqHjbC+2NdNKv/ybgCadcQWqgrSg8MDsGedVTQ06eYjzKq+z3lgwQRDNA==",
+  "dgSpecHash": "793RVhBFGlGF/dr5sqWw9pFoLGBHHnI1UxcZxMFiCN5TPX/7lG8W2tqYPUhDLwXOoIar3QJUR0vR2VsWxIevKQ==",
   "success": true,
   "projectFilePath": "/home/gabriel/Inoa/stock-quote/stock-quote.csproj",
-  "expectedPackageFiles": [
-    "/root/.nuget/packages/microsoft.netcore.app.runtime.win-x64/8.0.17/microsoft.netcore.app.runtime.win-x64.8.0.17.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/8.0.17/microsoft.aspnetcore.app.runtime.win-x64.8.0.17.nupkg.sha512",
-    "/root/.nuget/packages/microsoft.netcore.app.host.win-x64/8.0.17/microsoft.netcore.app.host.win-x64.8.0.17.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
