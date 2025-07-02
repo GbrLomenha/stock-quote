@@ -7,6 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>stock-quote</AssemblyName>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+
   </PropertyGroup>
 
 </Project>

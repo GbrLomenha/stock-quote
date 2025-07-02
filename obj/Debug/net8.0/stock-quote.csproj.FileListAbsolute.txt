@@ -1,0 +1,15 @@
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.GeneratedMSBuildEditorConfig.editorconfig
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.AssemblyInfoInputs.cache
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.AssemblyInfo.cs
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.csproj.CoreCompileInputs.cache
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.sourcelink.json
+/home/gabriel/Inoa/stock-quote/bin/Debug/net8.0/stock-quote
+/home/gabriel/Inoa/stock-quote/bin/Debug/net8.0/stock-quote.deps.json
+/home/gabriel/Inoa/stock-quote/bin/Debug/net8.0/stock-quote.runtimeconfig.json
+/home/gabriel/Inoa/stock-quote/bin/Debug/net8.0/stock-quote.dll
+/home/gabriel/Inoa/stock-quote/bin/Debug/net8.0/stock-quote.pdb
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.dll
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/refint/stock-quote.dll
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.pdb
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/stock-quote.genruntimeconfig.cache
+/home/gabriel/Inoa/stock-quote/obj/Debug/net8.0/ref/stock-quote.dll
