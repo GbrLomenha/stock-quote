@@ -3,7 +3,7 @@ using System.Text.Json;
 
 public static class ConfigService
 {
-    public static AppSettings? Config()
+    public static AppSettings? ReadJson()
     {
         string json;
         try

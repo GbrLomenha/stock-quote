@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("stock-quote")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72be44e62463ced6cbeb5ae587f36572da0ee811")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce24bf2a604a0a0689a0e539e60f05951516e4b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("stock-quote")]
 [assembly: System.Reflection.AssemblyTitleAttribute("stock-quote")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
