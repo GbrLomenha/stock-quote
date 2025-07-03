@@ -3,19 +3,19 @@ namespace Quotation.Services
 {
     public class StockQuoteService
     {
-        public SingleQuotation GetLatestStockQuotation(HttpClient Client, string TickerSymbol)
+        public StockQuotation GetLatestStockQuotation(HttpClient Client, string TickerSymbol)
         {
-            string url = $"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiSettings.ApiKey}";
-            string response = Client.GetStringAsync(url).Result;
+            string Url = $"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiSettings.ApiKey}";
+            string Json = Client.GetStringAsync(Url).Result;
 
             //Make response tratable...
 
-            ApiResponse apiResponse = JsonService.ReadApiResponseJson(response);
+            ApiResponse Response = JsonService.ReadApiResponseJson(Json);
 
-            return new SingleQuotation(
-                apiResponse.Symbol,
-                apiResponse.RegularMarketPrice,
-                DateTimeOffset.FromUnixTimeSeconds(apiResponse.RegularMarketTime).UtcDateTime
+            return new StockQuotation(
+                Response.Symbol,
+                Response.RegularMarketPrice,
+                DateTimeOffset.FromUnixTimeSeconds(Response.RegularMarketTime).UtcDateTime
             );
         }
     }
