@@ -1,9 +1,9 @@
 namespace Quotation.Models
 {
-    public class Quotation(string TickerSymbol, decimal Price, long Timestamp)
+    public class SingleQuotation(string TickerSymbol, decimal Price, DateTime Timestamp)
     {
         public string TickerSymbol { get; set; } = TickerSymbol;
         public decimal Price { get; set; } = Price;
-        public long Timestamp { get; set; } = Timestamp;
+        public DateTime Timestamp { get; set; } = Timestamp;
     }
 }
