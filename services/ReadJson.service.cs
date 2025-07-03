@@ -3,7 +3,7 @@ using System.Text.Json;
 
 public static class JsonService
 {
-    public static ConfigurationJson ReadConfigurationJson()
+    public static Configuration ReadConfigurationJson()
     {
         string Json;
         try
@@ -16,7 +16,7 @@ public static class JsonService
             Environment.Exit(1);
             return null; // Esta linha é necessária para satisfazer o compilador.
         }
-        ConfigurationJson? ObjectJson = JsonSerializer.Deserialize<ConfigurationJson>(Json)
+        Configuration? ObjectJson = JsonSerializer.Deserialize<Configuration>(Json)
             ?? throw new Exception("Failed to deserialize the AppConfig.Json file. Please ensure it is in the correct format.");
 
         return ObjectJson;
