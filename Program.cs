@@ -6,12 +6,9 @@ class Program
     {
         Console.WriteLine($"Inicializing Stock Quote Service... to {args[0]}");
 
-        //1- read appsettings.json file
         var settings = JsonService.ReadConfigurationJson();
 
-        //2- set ApiKey
         ApiSettings.ApiKey = settings.ApiKey;
-
 
 
         // //3- print if wrong values are found
@@ -31,11 +28,6 @@ class Program
         decimal SalePoint = decimal.Parse(args[2]);
 
         // //7- print initial configurations (email, stock, values and interval)
-        // Console.WriteLine($"Email: {AppSettings.EmailToSend}");
-        // Console.WriteLine($"Ticker Symbol: {args[0]}");
-        // Console.WriteLine($"Purchase Point: {PurshacePoint}");
-        // Console.WriteLine($"Sale Point: {SalePoint}");
-        // Console.WriteLine($"Interval: {AppSettings.VerificationInterval} minute");
 
         // //8- start the Stock Quote Service
         Console.WriteLine("Starting Stock Quote Service...");

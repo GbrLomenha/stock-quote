@@ -8,7 +8,7 @@ public static class JsonService
         string Json;
         try
         {
-            Json = File.ReadAllText("AppSettings.Json");
+            Json = File.ReadAllText("AppSettings.json");
         }
         catch (FileNotFoundException)
         {
