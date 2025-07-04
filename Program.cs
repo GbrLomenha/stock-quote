@@ -1,8 +1,9 @@
 ﻿using Quotation.Models;
+using Quotation.Services;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         Console.WriteLine($"Inicializing Stock Quote Service... to {args[0]}");
 
@@ -31,6 +32,8 @@ class Program
 
         // //8- start the Stock Quote Service
         Console.WriteLine("Starting Stock Quote Service...");
+        StockQuoteService stockQuoteService = new (new HttpClientFactory());
+        await stockQuoteService.MonitorStockQuotation(args[0], PurshacePoint, SalePoint);
 
     }
 }

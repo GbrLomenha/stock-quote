@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "793RVhBFGlGF/dr5sqWw9pFoLGBHHnI1UxcZxMFiCN5TPX/7lG8W2tqYPUhDLwXOoIar3QJUR0vR2VsWxIevKQ==",
+  "dgSpecHash": "R5f/ZygH8l7g3FHW2hbB5BK/XHHiRLyYSOBjN16CEut37/vUeifwXq8GPikkFt09VnbxCdN+lGKpE/Juseeg4g==",
   "success": true,
   "projectFilePath": "/home/gabriel/Inoa/stock-quote/stock-quote.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.extensions.configuration/9.0.6/microsoft.extensions.configuration.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.6/microsoft.extensions.configuration.abstractions.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.configuration.binder/9.0.6/microsoft.extensions.configuration.binder.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.6/microsoft.extensions.dependencyinjection.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.6/microsoft.extensions.dependencyinjection.abstractions.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.diagnostics/9.0.6/microsoft.extensions.diagnostics.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.diagnostics.abstractions/9.0.6/microsoft.extensions.diagnostics.abstractions.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.http/9.0.6/microsoft.extensions.http.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.logging/9.0.6/microsoft.extensions.logging.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.6/microsoft.extensions.logging.abstractions.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.options/9.0.6/microsoft.extensions.options.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.options.configurationextensions/9.0.6/microsoft.extensions.options.configurationextensions.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.primitives/9.0.6/microsoft.extensions.primitives.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/system.diagnostics.diagnosticsource/9.0.6/system.diagnostics.diagnosticsource.9.0.6.nupkg.sha512"
+  ],
   "logs": []
 }

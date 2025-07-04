@@ -1,47 +1,59 @@
+using System.Net;
+using System.Net.Http.Json;
 using Quotation.Models;
 namespace Quotation.Services
 {
     public class StockQuoteService
     {
-        public async Task<StockQuotation> GetLatestStockQuotation(HttpClient Client, string TickerSymbol)
+        private readonly IHttpClientFactory ClientFactory;
+
+        public StockQuoteService(IHttpClientFactory clientFactory)
         {
-            string Url = $"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiSettings.ApiKey}";
-            string Json = await Client.GetStringAsync(Url);
+            ClientFactory = clientFactory ?? throw new ArgumentNullException(nameof(clientFactory));
+        }
 
-            //Make response tratable...
+        public async Task<StockQuotation> GetLatestStockQuotation(string TickerSymbol)
+        {
+            HttpClient Client = ClientFactory.CreateClient();
+            Uri Url = new($"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiSettings.ApiKey}");
+            HttpResponseMessage Response = await Client.GetAsync(Url);
+            if (!Response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"Failed to fetch stock quotation. Status code: {Response.StatusCode}");
+                Environment.Exit(1);
+            }
 
-            ApiResponse Response = JsonService.ReadApiResponseJson(Json);
+            ApiResponse? ApiResponse = await Response.Content.ReadFromJsonAsync<ApiResponse>();
+            if (ApiResponse == null)
+                throw new Exception("Failed to deserialize API response.");
+
+            Console.WriteLine($"API Response: {ApiResponse.Symbol} - {ApiResponse.RegularMarketPrice} at {ApiResponse.RegularMarketTime}");
 
             return new StockQuotation(
-                Response.Symbol,
-                Response.RegularMarketPrice,
-                DateTimeOffset.FromUnixTimeSeconds(Response.RegularMarketTime).UtcDateTime
+                ApiResponse.Symbol,
+                ApiResponse.RegularMarketPrice,
+                DateTimeOffset.FromUnixTimeSeconds(ApiResponse.RegularMarketTime).UtcDateTime
             );
         }
 
-        async public void MonitorStockQuotation(string TickerSymbol, decimal PurshacePoint, decimal SalePoint)
+        public async Task MonitorStockQuotation(string TickerSymbol, decimal PurshacePoint, decimal SalePoint)
         {
-            HttpClient Client = new HttpClient();
+            HttpClient Client = ClientFactory.CreateClient();
             Client.Timeout = TimeSpan.FromSeconds(10);
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             while (true)
             {
-                StockQuotation ActualQuotation = await GetLatestStockQuotation(Client, TickerSymbol);
-                
-                if(ActualQuotation.Price<= PurshacePoint)
-                {
+                StockQuotation ActualQuotation = await GetLatestStockQuotation(TickerSymbol);
+                if (ActualQuotation.Price <= PurshacePoint)
                     Console.WriteLine($"Stock {TickerSymbol} has reached the purchase point of {PurshacePoint}. Consider buying.");
-                }
-                else if(ActualQuotation.Price>= SalePoint)
-                {
+                else if (ActualQuotation.Price >= SalePoint)
                     Console.WriteLine($"Stock {TickerSymbol} has reached the sale point of {SalePoint}. Consider selling.");
-                }
                 else
-                {
                     Console.WriteLine($"Stock {TickerSymbol} is at {ActualQuotation.Price}. No action needed.");
-                }
 
-                Thread.Sleep(60000); // Wait for 60 seconds before the next request
+                await Task.Delay(60000); // Wait for 60 seconds before the next request
             }
         }
     }

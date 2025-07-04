@@ -22,19 +22,19 @@ public static class JsonService
         return ObjectJson;
     }
 
-    public static ApiResponse ReadApiResponseJson(string json)
-    {
-        try
-        {
-            ApiResponse Response = JsonSerializer.Deserialize<ApiResponse>(json)
-                ?? throw new Exception("Failed to deserialize the API response JSON. Please ensure it is in the correct format.");
-            return Response;
-        }
-        catch (JsonException ex)
-        {
-            Console.WriteLine($"An error occurred while deserializing the API response JSON: {ex.Message}");
-            Environment.Exit(1);
-            return null;
-        }
-    }
+    // public static ApiResponse ReadApiResponseJson(string json)
+    // {
+    //     try
+    //     {
+    //         ApiResponse Response = JsonSerializer.Deserialize<ApiResponse>(json)
+    //             ?? throw new Exception("Failed to deserialize the API response JSON. Please ensure it is in the correct format.");
+    //         return Response;
+    //     }
+    //     catch (JsonException ex)
+    //     {
+    //         Console.WriteLine($"An error occurred while deserializing the API response JSON: {ex.Message}");
+    //         Environment.Exit(1);
+    //         return null;
+    //     }
+    // }
 }
