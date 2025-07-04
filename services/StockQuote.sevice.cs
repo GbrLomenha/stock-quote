@@ -29,7 +29,7 @@ namespace Quotation.Services
             return new StockQuotation(
                 ApiResponse.Symbol,
                 ApiResponse.RegularMarketPrice,
-                DateTimeOffset.FromUnixTimeSeconds(ApiResponse.RegularMarketTime).UtcDateTime
+                ApiResponse.RegularMarketTime
             );
         }
 

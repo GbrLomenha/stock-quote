@@ -4,7 +4,7 @@ namespace Quotation.Models
     {
         public required string Symbol { get; set; }
         public required decimal RegularMarketPrice { get; set; }
-        public required long RegularMarketTime { get; set; }
+        public required DateTime RegularMarketTime { get; set; }
     }
     public class ApiRootResponse
     {
