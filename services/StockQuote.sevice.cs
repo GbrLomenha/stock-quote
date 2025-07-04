@@ -1,21 +1,24 @@
 using System.Net;
 using System.Net.Http.Json;
 using Quotation.Models;
+using Microsoft.Extensions.Configuration;
 namespace Quotation.Services
 {
     public class StockQuoteService
     {
         private readonly IHttpClientFactory ClientFactory;
+        private readonly string ApiKey;
 
-        public StockQuoteService(IHttpClientFactory clientFactory)
+        public StockQuoteService(IHttpClientFactory clientFactory, IConfiguration configuration)
         {
             ClientFactory = clientFactory ?? throw new ArgumentNullException(nameof(clientFactory));
+            ApiKey = configuration["ApiKey"] ?? throw new ArgumentNullException("ApiKey", "API key is missing in configuration.");
         }
 
         public async Task<StockQuotation> GetLatestStockQuotation(string TickerSymbol)
         {
             HttpClient Client = ClientFactory.CreateClient();
-            Uri Url = new($"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiSettings.ApiKey}");
+            Uri Url = new($"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiKey}");
             HttpResponseMessage Response = await Client.GetAsync(Url);
             if (!Response.IsSuccessStatusCode)
             {
