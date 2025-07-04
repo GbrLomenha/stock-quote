@@ -1,4 +1,3 @@
-using System.Net;
 using System.Net.Http.Json;
 using Quotation.Models;
 using Microsoft.Extensions.Configuration;
@@ -21,16 +20,11 @@ namespace Quotation.Services
             Uri Url = new($"https://brapi.dev/api/quote/{TickerSymbol}?token={ApiKey}");
             HttpResponseMessage Response = await Client.GetAsync(Url);
             if (!Response.IsSuccessStatusCode)
-            {
                 Console.WriteLine($"Failed to fetch stock quotation. Status code: {Response.StatusCode}");
-                Environment.Exit(1);
-            }
 
-            ApiResponse? ApiResponse = await Response.Content.ReadFromJsonAsync<ApiResponse>();
-            if (ApiResponse == null)
-                throw new Exception("Failed to deserialize API response.");
+            ApiRootResponse? ApiRootResponse = await Response.Content.ReadFromJsonAsync<ApiRootResponse>() ?? throw new Exception("Failed to deserialize API response.");
 
-            Console.WriteLine($"API Response: {ApiResponse.Symbol} - {ApiResponse.RegularMarketPrice} at {ApiResponse.RegularMarketTime}");
+            ApiResponse ApiResponse = ApiRootResponse.Results[0] ?? throw new Exception("No valid stock data found in API response.");
 
             return new StockQuotation(
                 ApiResponse.Symbol,
