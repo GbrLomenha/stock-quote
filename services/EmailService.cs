@@ -16,14 +16,35 @@ namespace Quotation.Services
 
         public async Task SendEmail(string Subject, string Body)
         {
-            using var Client = new SmtpClient(Config.SmtpServer, Config.SmtpPort)
+            using (SmtpClient Client = new SmtpClient(Config.SmtpServer, Config.SmtpPort))
             {
-                Credentials = new NetworkCredential(Config.SmtpUser, Config.SmtpPassword),
-                EnableSsl = true
-            };
+                Client.Credentials = new NetworkCredential(Config.SmtpUser, Config.SmtpPassword);
+                Client.EnableSsl = true;
+                using (MailMessage Message = new MailMessage())
+                {
+                    Message.From = new MailAddress(Config.From);
+                    Message.To.Add(new MailAddress(Config.To));
+                    Message.Subject = Subject;
+                    Message.Body = Body;
+                    Message.IsBodyHtml = true;
 
-            var Mail = new MailMessage(Config.From, Config.To, Subject, Body);
-            await Client.SendMailAsync(Mail);
+                    try
+                    {
+                        await Client.SendMailAsync(Message);
+                    }
+                    catch (SmtpException ex)
+                    {
+                        Console.WriteLine($"SMTP error: {ex.Message}");
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        throw;
+                    }
+                }
+
+            }
         }
         public async Task ConfirmEmailToSendOnSetup()
         {
