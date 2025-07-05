@@ -61,16 +61,125 @@ namespace Quotation.Services
         public async Task PurchaseNotification(string TickerSymbol, decimal PurchasePoint, StockQuotation Quotation)
         {
             string Subject = $"Purchase Notification for {TickerSymbol}";
-            string Body = $"The stock {TickerSymbol} has reached the purchase point of {PurchasePoint}.\n" +
-                          $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
+            string Body = $@"
+            <html>
+              <head>
+                <style>
+                  body {{
+                    font-family: Arial, Helvetica, sans-serif;
+                    background-color: #f5f6fa;
+                    color: #222;
+                    margin: 0;
+                    padding: 0;
+                  }}
+                  .container {{
+                    background: #fff;
+                    max-width: 480px;
+                    margin: 40px auto;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                    padding: 32px 24px;
+                  }}
+                  .title {{
+                    color: #444;
+                    font-size: 1.3em;
+                    margin-bottom: 16px;
+                  }}
+                  .info {{
+                    background: #f0f1f3;
+                    border-radius: 6px;
+                    padding: 16px;
+                    margin-bottom: 24px;
+                  }}
+                  .footer {{
+                    color: #888;
+                    font-size: 0.95em;
+                    margin-top: 32px;
+                    text-align: center;
+                  }}
+                </style>
+              </head>
+              <body>
+                <div class='container'>
+                  <div class='title'>Alerta de Compra de Ação</div>
+                  <div class='info'>
+                    <strong>{TickerSymbol}</strong> atingiu o ponto de compra de <strong>{PurchasePoint:C}</strong>.<br/>
+                    <br/>
+                    <b>Preço atual:</b> {Quotation.Price:C}<br/>
+                    <b>Horário:</b> {Quotation.Timestamp:dd/MM/yyyy HH:mm:ss}
+                  </div>
+                  <div>
+                    Considere realizar a compra conforme sua estratégia de investimentos.
+                  </div>
+                  <div class='footer'>
+                    Stock Quote Service &copy; {DateTime.Now.Year}
+                  </div>
+                </div>
+              </body>
+            </html>";
 
             await SendEmail(Subject, Body);
         }
+
         public async Task SaleNotification(string TickerSymbol, decimal SalePoint, StockQuotation Quotation)
         {
             string Subject = $"Sale Notification for {TickerSymbol}";
-            string Body = $"The stock {TickerSymbol} has reached the sale point of {SalePoint}.\n" +
-                          $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
+            string Body = $@"
+            <html>
+              <head>
+                <style>
+                  body {{
+                    font-family: Arial, Helvetica, sans-serif;
+                    background-color: #f5f6fa;
+                    color: #222;
+                    margin: 0;
+                    padding: 0;
+                  }}
+                  .container {{
+                    background: #fff;
+                    max-width: 480px;
+                    margin: 40px auto;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                    padding: 32px 24px;
+                  }}
+                  .title {{
+                    color: #444;
+                    font-size: 1.3em;
+                    margin-bottom: 16px;
+                  }}
+                  .info {{
+                    background: #f0f1f3;
+                    border-radius: 6px;
+                    padding: 16px;
+                    margin-bottom: 24px;
+                  }}
+                  .footer {{
+                    color: #888;
+                    font-size: 0.95em;
+                    margin-top: 32px;
+                    text-align: center;
+                  }}
+                </style>
+              </head>
+              <body>
+                <div class='container'>
+                  <div class='title'>Alerta de Venda de Ação</div>
+                  <div class='info'>
+                    <strong>{TickerSymbol}</strong> atingiu o ponto de venda de <strong>{SalePoint:C}</strong>.<br/>
+                    <br/>
+                    <b>Preço atual:</b> {Quotation.Price:C}<br/>
+                    <b>Horário:</b> {Quotation.Timestamp:dd/MM/yyyy HH:mm:ss}
+                  </div>
+                  <div>
+                    Considere realizar a venda conforme sua estratégia de investimentos.
+                  </div>
+                  <div class='footer'>
+                    Stock Quote Service &copy; {DateTime.Now.Year}
+                  </div>
+                </div>
+              </body>
+            </html>";
 
             await SendEmail(Subject, Body);
         }
