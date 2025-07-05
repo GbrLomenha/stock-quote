@@ -34,13 +34,13 @@ namespace Quotation.Services
                 ApiResponse.Symbol,
                 ApiResponse.RegularMarketPrice,
                 ApiResponse.RegularMarketTime,
-                ApiResponse.LogoUrl,
                 ApiResponse.LongName
             );
         }
 
         public async Task MonitorStockQuotation(string TickerSymbol, decimal PurshacePoint, decimal SalePoint)
         {
+            Console.WriteLine($"Monitoring stock {TickerSymbol} for purchase point {PurshacePoint} and sale point {SalePoint}...");
             HttpClient Client = ClientFactory.CreateClient();
             Client.Timeout = TimeSpan.FromSeconds(10);
             Client.DefaultRequestHeaders.Accept.Clear();

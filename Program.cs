@@ -26,7 +26,6 @@ class Program
             .Build();
 
         //Send confirmation email
-        Console.WriteLine("Sending confirmation email...");
         EmailService emailService = host.Services.GetRequiredService<EmailService>();
         await emailService.ConfirmEmailToSendOnSetup();
 
@@ -35,7 +34,6 @@ class Program
         decimal SalePoint = decimal.Parse(args[2]);
 
         // Start Stock Quote Service
-        Console.WriteLine("Starting Stock Quote Service...");
         var StockQuoteService = host.Services.GetRequiredService<StockQuoteService>();
         await StockQuoteService.MonitorStockQuotation(args[0], PurchasePoint, SalePoint);
     }
