@@ -20,6 +20,7 @@ class Program
             {
                 services.AddHttpClient();
                 services.AddScoped<StockQuoteService>();
+                services.AddScoped<EmailService>();
             })
             .Build();
 
