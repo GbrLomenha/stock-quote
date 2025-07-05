@@ -33,7 +33,9 @@ namespace Quotation.Services
             return new StockQuotation(
                 ApiResponse.Symbol,
                 ApiResponse.RegularMarketPrice,
-                ApiResponse.RegularMarketTime
+                ApiResponse.RegularMarketTime,
+                ApiResponse.LogoUrl,
+                ApiResponse.LongName
             );
         }
 
