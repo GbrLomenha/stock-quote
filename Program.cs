@@ -24,6 +24,10 @@ class Program
             })
             .Build();
 
+        //Send confirmation email
+        EmailService emailService = host.Services.GetRequiredService<EmailService>();
+        await emailService.ConfirmEmailToSendOnSetup();
+
         decimal PurchasePoint = decimal.Parse(args[1]);
         decimal SalePoint = decimal.Parse(args[2]);
 

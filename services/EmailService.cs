@@ -14,7 +14,7 @@ namespace Quotation.Services
             Config = Configuration.GetSection("EmailConfig").Get<EmailConfig>() ?? throw new ArgumentNullException("EmailConfig", "Email configuration is missing in the settings.");
         }
 
-        public void SendEmail(string Subject, string Body)
+        public async Task SendEmail(string Subject, string Body)
         {
             using var Client = new SmtpClient(Config.SmtpServer, Config.SmtpPort)
             {
@@ -23,13 +23,13 @@ namespace Quotation.Services
             };
 
             var Mail = new MailMessage(Config.From, Config.To, Subject, Body);
-            Client.Send(Mail);
+            await Client.SendMailAsync(Mail);
         }
-        public void ConfirmEmailToSendOnSetup()
+        public async Task ConfirmEmailToSendOnSetup()
         {
             try
             {
-                SendEmail("Stock Quote Service Setup Confirmation", "The Stock Quote Service has been set up successfully.");
+                await SendEmail("Stock Quote Service Setup Confirmation", "The Stock Quote Service has been set up successfully.");
                 Console.WriteLine("Confirmation email sent successfully.");
             }
             catch (Exception ex)
@@ -37,21 +37,21 @@ namespace Quotation.Services
                 Console.WriteLine($"Failed to send confirmation email: {ex.Message}");
             }
         }
-        public void PurchaseNotification(string TickerSymbol, decimal PurchasePoint, StockQuotation Quotation)
+        public async Task PurchaseNotification(string TickerSymbol, decimal PurchasePoint, StockQuotation Quotation)
         {
             string Subject = $"Purchase Notification for {TickerSymbol}";
             string Body = $"The stock {TickerSymbol} has reached the purchase point of {PurchasePoint}.\n" +
                           $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
 
-            SendEmail(Subject, Body);
+            await SendEmail(Subject, Body);
         }
-        public void SaleNotification(string TickerSymbol, decimal SalePoint, StockQuotation Quotation)
+        public async Task SaleNotification(string TickerSymbol, decimal SalePoint, StockQuotation Quotation)
         {
             string Subject = $"Sale Notification for {TickerSymbol}";
             string Body = $"The stock {TickerSymbol} has reached the sale point of {SalePoint}.\n" +
                           $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
 
-            SendEmail(Subject, Body);
+            await SendEmail(Subject, Body);
         }
     }
 }
