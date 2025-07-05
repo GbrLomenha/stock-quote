@@ -24,11 +24,11 @@ class Program
             })
             .Build();
 
-        decimal PurshacePoint = decimal.Parse(args[1]);
+        decimal PurchasePoint = decimal.Parse(args[1]);
         decimal SalePoint = decimal.Parse(args[2]);
 
         Console.WriteLine("Starting Stock Quote Service...");
-        var stockQuoteService = host.Services.GetRequiredService<StockQuoteService>();
-        await stockQuoteService.MonitorStockQuotation(args[0], PurshacePoint, SalePoint);
+        var StockQuoteService = host.Services.GetRequiredService<StockQuoteService>();
+        await StockQuoteService.MonitorStockQuotation(args[0], PurchasePoint, SalePoint);
     }
 }

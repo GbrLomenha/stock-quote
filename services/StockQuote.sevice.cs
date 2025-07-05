@@ -8,14 +8,14 @@ namespace Quotation.Services
         private readonly IHttpClientFactory ClientFactory;
         private readonly string ApiKey;
         private readonly IConfiguration Configuration;
-        private readonly EmailService _EmailService;
+        private readonly EmailService EmailService;
 
-        public StockQuoteService(IHttpClientFactory clientFactory, IConfiguration configuration, EmailService EmailService)
+        public StockQuoteService(IHttpClientFactory ClientFactory, IConfiguration Configuration, EmailService EmailService)
         {
-            ClientFactory = clientFactory ?? throw new ArgumentNullException(nameof(clientFactory));
-            ApiKey = configuration["ApiKey"] ?? throw new ArgumentNullException("ApiKey", "API key is missing in configuration.");
-            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _EmailService = EmailService;
+            this.ClientFactory = ClientFactory ?? throw new ArgumentNullException(nameof(ClientFactory));
+            ApiKey = Configuration["ApiKey"] ?? throw new ArgumentNullException("ApiKey", "API key is missing in configuration.");
+            this.Configuration = Configuration ?? throw new ArgumentNullException(nameof(Configuration));
+            this.EmailService = EmailService;
         }
 
         public async Task<StockQuotation> GetLatestStockQuotation(string TickerSymbol)
@@ -49,11 +49,11 @@ namespace Quotation.Services
                 StockQuotation ActualQuotation = await GetLatestStockQuotation(TickerSymbol);
                 if (ActualQuotation.Price <= PurshacePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the purchase point of {PurshacePoint}. Consider buying.");
-                    _EmailService.PurchaseNotification(TickerSymbol, PurshacePoint, ActualQuotation);
+                    EmailService.PurchaseNotification(TickerSymbol, PurshacePoint, ActualQuotation);
                 }
                 else if (ActualQuotation.Price >= SalePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the sale point of {SalePoint}. Consider selling.");
-                    _EmailService.SaleNotification(TickerSymbol, SalePoint, ActualQuotation);
+                    EmailService.SaleNotification(TickerSymbol, SalePoint, ActualQuotation);
                 }
                 else
                     Console.WriteLine($"Stock {TickerSymbol} is at {ActualQuotation.Price}. No action needed.");

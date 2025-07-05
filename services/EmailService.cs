@@ -7,23 +7,23 @@ namespace Quotation.Services
 {
     public class EmailService
     {
-        private readonly EmailConfig _config;
+        private readonly EmailConfig Config;
 
-        public EmailService(IConfiguration configuration)
+        public EmailService(IConfiguration Configuration)
         {
-            _config = configuration.GetSection("EmailConfig").Get<EmailConfig>() ?? throw new ArgumentNullException("EmailConfig", "Email configuration is missing in the settings.");
+            Config = Configuration.GetSection("EmailConfig").Get<EmailConfig>() ?? throw new ArgumentNullException("EmailConfig", "Email configuration is missing in the settings.");
         }
 
-        public void SendEmail(string subject, string body)
+        public void SendEmail(string Subject, string Body)
         {
-            using var client = new SmtpClient(_config.SmtpServer, _config.SmtpPort)
+            using var Client = new SmtpClient(Config.SmtpServer, Config.SmtpPort)
             {
-                Credentials = new NetworkCredential(_config.SmtpUser, _config.SmtpPassword),
+                Credentials = new NetworkCredential(Config.SmtpUser, Config.SmtpPassword),
                 EnableSsl = true
             };
 
-            var mail = new MailMessage(_config.From, _config.To, subject, body);
-            client.Send(mail);
+            var Mail = new MailMessage(Config.From, Config.To, Subject, Body);
+            Client.Send(Mail);
         }
         public void ConfirmEmailToSendOnSetup()
         {
@@ -37,21 +37,21 @@ namespace Quotation.Services
                 Console.WriteLine($"Failed to send confirmation email: {ex.Message}");
             }
         }
-        public void PurchaseNotification(string tickerSymbol, decimal purchasePoint, StockQuotation quotation)
+        public void PurchaseNotification(string TickerSymbol, decimal PurchasePoint, StockQuotation Quotation)
         {
-            string subject = $"Purchase Notification for {tickerSymbol}";
-            string body = $"The stock {tickerSymbol} has reached the purchase point of {purchasePoint}.\n" +
-                          $"Current price: {quotation.Price} at {quotation.Timestamp}";
+            string Subject = $"Purchase Notification for {TickerSymbol}";
+            string Body = $"The stock {TickerSymbol} has reached the purchase point of {PurchasePoint}.\n" +
+                          $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
 
-            SendEmail(subject, body);
+            SendEmail(Subject, Body);
         }
-        public void SaleNotification(string tickerSymbol, decimal salePoint, StockQuotation quotation)
+        public void SaleNotification(string TickerSymbol, decimal SalePoint, StockQuotation Quotation)
         {
-            string subject = $"Sale Notification for {tickerSymbol}";
-            string body = $"The stock {tickerSymbol} has reached the sale point of {salePoint}.\n" +
-                          $"Current price: {quotation.Price} at {quotation.Timestamp}";
+            string Subject = $"Sale Notification for {TickerSymbol}";
+            string Body = $"The stock {TickerSymbol} has reached the sale point of {SalePoint}.\n" +
+                          $"Current price: {Quotation.Price} at {Quotation.Timestamp}";
 
-            SendEmail(subject, body);
+            SendEmail(Subject, Body);
         }
     }
 }
