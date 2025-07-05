@@ -7,11 +7,13 @@ namespace Quotation.Services
     {
         private readonly IHttpClientFactory ClientFactory;
         private readonly string ApiKey;
+        private readonly IConfiguration Configuration;
 
         public StockQuoteService(IHttpClientFactory clientFactory, IConfiguration configuration)
         {
             ClientFactory = clientFactory ?? throw new ArgumentNullException(nameof(clientFactory));
             ApiKey = configuration["ApiKey"] ?? throw new ArgumentNullException("ApiKey", "API key is missing in configuration.");
+            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public async Task<StockQuotation> GetLatestStockQuotation(string TickerSymbol)
@@ -50,7 +52,7 @@ namespace Quotation.Services
                 else
                     Console.WriteLine($"Stock {TickerSymbol} is at {ActualQuotation.Price}. No action needed.");
 
-                await Task.Delay(60000); // Wait for 60 seconds before the next request
+                await Task.Delay(TimeSpan.FromMinutes(int.Parse(Configuration["VerificationInterval"] ?? "30")));
             }
         }
     }
