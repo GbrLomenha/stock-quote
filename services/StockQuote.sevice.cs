@@ -8,12 +8,14 @@ namespace Quotation.Services
         private readonly IHttpClientFactory ClientFactory;
         private readonly string ApiKey;
         private readonly IConfiguration Configuration;
+        private readonly EmailService _EmailService;
 
-        public StockQuoteService(IHttpClientFactory clientFactory, IConfiguration configuration)
+        public StockQuoteService(IHttpClientFactory clientFactory, IConfiguration configuration, EmailService EmailService)
         {
             ClientFactory = clientFactory ?? throw new ArgumentNullException(nameof(clientFactory));
             ApiKey = configuration["ApiKey"] ?? throw new ArgumentNullException("ApiKey", "API key is missing in configuration.");
             Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _EmailService = EmailService;
         }
 
         public async Task<StockQuotation> GetLatestStockQuotation(string TickerSymbol)
