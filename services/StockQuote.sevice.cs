@@ -47,10 +47,14 @@ namespace Quotation.Services
             while (true)
             {
                 StockQuotation ActualQuotation = await GetLatestStockQuotation(TickerSymbol);
-                if (ActualQuotation.Price <= PurshacePoint)
+                if (ActualQuotation.Price <= PurshacePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the purchase point of {PurshacePoint}. Consider buying.");
-                else if (ActualQuotation.Price >= SalePoint)
+                    _EmailService.PurchaseNotification(TickerSymbol, PurshacePoint, ActualQuotation);
+                }
+                else if (ActualQuotation.Price >= SalePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the sale point of {SalePoint}. Consider selling.");
+                    _EmailService.SaleNotification(TickerSymbol, SalePoint, ActualQuotation);
+                }
                 else
                     Console.WriteLine($"Stock {TickerSymbol} is at {ActualQuotation.Price}. No action needed.");
 
