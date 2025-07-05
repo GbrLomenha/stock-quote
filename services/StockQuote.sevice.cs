@@ -49,11 +49,11 @@ namespace Quotation.Services
                 StockQuotation ActualQuotation = await GetLatestStockQuotation(TickerSymbol);
                 if (ActualQuotation.Price <= PurshacePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the purchase point of {PurshacePoint}. Consider buying.");
-                    EmailService.PurchaseNotification(TickerSymbol, PurshacePoint, ActualQuotation);
+                    await EmailService.PurchaseNotification(TickerSymbol, PurshacePoint, ActualQuotation);
                 }
                 else if (ActualQuotation.Price >= SalePoint) {
                     Console.WriteLine($"Stock {TickerSymbol} has reached the sale point of {SalePoint}. Consider selling.");
-                    EmailService.SaleNotification(TickerSymbol, SalePoint, ActualQuotation);
+                    await EmailService.SaleNotification(TickerSymbol, SalePoint, ActualQuotation);
                 }
                 else
                     Console.WriteLine($"Stock {TickerSymbol} is at {ActualQuotation.Price}. No action needed.");
