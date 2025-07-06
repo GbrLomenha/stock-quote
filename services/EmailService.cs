@@ -186,9 +186,9 @@ namespace Quotation.Services
 					<div class='longname'>{Quotation.LongName}</div>
 					<div class='title'>Stock Purchase Alert</div>
 					<div class='info'>
-						<strong>{Quotation.LongName} ({TickerSymbol})</strong> has reached the purchase point of <strong>{PurchasePoint}</strong>.<br/>
+						<strong>{Quotation.LongName} ({TickerSymbol})</strong> has reached the purchase point of R$<strong>{PurchasePoint}</strong>.<br/>
 						<br/>
-						<b>Current price:</b> {Quotation.Price}<br/>
+						<b>Current price:</b> R${Quotation.Price}<br/>
 						<b>Date/Time:</b> {Quotation.Timestamp:dd/MM/yyyy HH:mm:ss}
 					</div>
 					<div>
@@ -266,9 +266,9 @@ namespace Quotation.Services
 					<div class='longname'>{Quotation.LongName}</div>
 					<div class='title'>Stock Sale Alert</div>
 					<div class='info'>
-						<strong>{Quotation.LongName} ({TickerSymbol})</strong> has reached the sale point of <strong>{SalePoint}</strong>.<br/>
+						<strong>{Quotation.LongName} ({TickerSymbol})</strong> has reached the sale point of R$<strong>{SalePoint}</strong>.<br/>
 						<br/>
-						<b>Current price:</b> {Quotation.Price}<br/>
+						<b>Current price:</b> R${Quotation.Price}<br/>
 						<b>Date/Time:</b> {Quotation.Timestamp:dd/MM/yyyy HH:mm:ss}
 					</div>
 					<div>
