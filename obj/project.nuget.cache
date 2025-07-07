@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qyp0Ci42/OOqnukOGXUIw6tcHEjbMjS1r9eNky9FIHhh5R0rtsaLESVUmifiK8BRZVmQIFOoLPVrc/XWJ0brow==",
+  "dgSpecHash": "zhipEwDfHFsc3SHz9en6uSvscvfKV/Sqdin4vZroScZb3Cl7ndpAaFM5bOMK05Ai3ewycV2itZkzvusHUL+XJA==",
   "success": true,
   "projectFilePath": "/home/gabriel/Inoa/stock-quote/stock-quote.csproj",
   "expectedPackageFiles": [
@@ -36,7 +36,10 @@
     "/root/.nuget/packages/system.diagnostics.eventlog/9.0.6/system.diagnostics.eventlog.9.0.6.nupkg.sha512",
     "/root/.nuget/packages/system.io.pipelines/9.0.6/system.io.pipelines.9.0.6.nupkg.sha512",
     "/root/.nuget/packages/system.text.encodings.web/9.0.6/system.text.encodings.web.9.0.6.nupkg.sha512",
-    "/root/.nuget/packages/system.text.json/9.0.6/system.text.json.9.0.6.nupkg.sha512"
+    "/root/.nuget/packages/system.text.json/9.0.6/system.text.json.9.0.6.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.netcore.app.runtime.win-x64/8.0.17/microsoft.netcore.app.runtime.win-x64.8.0.17.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/8.0.17/microsoft.aspnetcore.app.runtime.win-x64.8.0.17.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.netcore.app.host.win-x64/8.0.17/microsoft.netcore.app.host.win-x64.8.0.17.nupkg.sha512"
   ],
   "logs": []
 }
