@@ -5,18 +5,16 @@ Este projeto é uma aplicação de console desenvolvida em C# que monitora a cot
 ## Índice
 
 - Funcionalidades
-  - Tecnologias Utilizadas
-  - Como Começar
-    - Pré-requisitos
-    - Instalação
-    - Configuração
-    - Executando a Aplicação
-  - Estrutura do Projeto
-  - Decisões de Design e Boas Práticas
-  - Funcionalidades Extras
-  - Melhorias Futuras
-  - Licença
-  - Contato
+- Tecnologias Utilizadas
+- Como Começar
+  - Pré-requisitos
+  - Instalação
+  - Configuração
+  - Executando a Aplicação
+- Estrutura do Projeto
+- Decisões de Design e Boas Práticas
+- Funcionalidades Extras
+- Melhorias Futuras
 
 ## Funcionalidades
 
