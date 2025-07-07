@@ -1,157 +1,151 @@
 # Stock Quote Alert Service
 
-This project is a console application developed in C\# that monitors the quotation of a B3 (Brazilian Stock Exchange) asset and sends email alerts if its price falls below a specified purchase point or rises above a sale point.
+Este projeto é uma aplicação de console desenvolvida em C# que monitora a cotação de um ativo da B3 (Bolsa de Valores do Brasil) e envia alertas por e-mail caso o preço caia abaixo de um ponto de compra especificado ou suba acima de um ponto de venda definido.
 
-## Table of Contents
+## Índice
 
-  * [Features](https://www.google.com/search?q=%23features)
-  * [Technologies Used](https://www.google.com/search?q=%23technologies-used)
-  * [Getting Started](https://www.google.com/search?q=%23getting-started)
-      * [Prerequisites](https://www.google.com/search?q=%23prerequisites)
-      * [Installation](https://www.google.com/search?q=%23installation)
-      * [Configuration](https://www.google.com/search?q=%23configuration)
-      * [Running the Application](https://www.google.com/search?q=%23running-the-application)
-  * [Project Structure](https://www.google.com/search?q=%23project-structure)
-  * [Design Choices and Best Practices](https://www.google.com/search?q=%23design-choices-and-best-practices)
-  * [Extra Features](https://www.google.com/search?q=%23extra-features)
-  * [Future Improvements](https://www.google.com/search?q=%23future-improvements)
-  * [License](https://www.google.com/search?q=%23license)
-  * [Contact](https://www.google.com/search?q=%23contact)
+- Funcionalidades
+  - Tecnologias Utilizadas
+  - Como Começar
+    - Pré-requisitos
+    - Instalação
+    - Configuração
+    - Executando a Aplicação
+  - Estrutura do Projeto
+  - Decisões de Design e Boas Práticas
+  - Funcionalidades Extras
+  - Melhorias Futuras
+  - Licença
+  - Contato
 
-## Features
+## Funcionalidades
 
-  * [cite\_start]Continuously monitors a specified B3 stock ticker. [cite: 1, 35]
-  * [cite\_start]Sends email notifications when the stock price drops to or below a defined purchase point. [cite: 1, 23, 51]
-  * [cite\_start]Sends email notifications when the stock price rises to or above a defined sale point. [cite: 1, 23, 50]
-  * [cite\_start]Configurable via `AppSettings.json` for email destination and SMTP server settings. [cite: 1, 31, 32, 33]
-  * Input validation for command-line arguments.
-  * [cite\_start]Confirmation email sent on setup to verify email functionality. [cite: 74]
+- Monitora continuamente um ticker de ação da B3 especificado.
+- Envia notificações por e-mail quando o preço da ação cai até ou abaixo do ponto de compra definido.
+- Envia notificações por e-mail quando o preço da ação sobe até ou acima do ponto de venda definido.
+- Configuração via `AppSettings.json` para destino de e-mail e configurações do servidor SMTP.
+- Validação de entrada dos argumentos de linha de comando.
+- Envia e-mail de confirmação na configuração para verificar o funcionamento do envio de e-mails.
 
-## Technologies Used
+## Tecnologias Utilizadas
 
-  * [cite\_start]**C\#**: The primary programming language used. [cite: 1, 12]
-  * **.NET**: Framework for building the console application.
-  * [cite\_start]**Brapi API**: Chosen for fetching stock quotations due to its free tier and B3 coverage. [cite: 63]
-  * [cite\_start]**`IHttpClientFactory`**: Used for efficient management and reuse of HTTP connections, preventing `SocketException`. [cite: 70]
-  * [cite\_start]**SMTP Client**: For sending email notifications. [cite: 77]
-  * **`Microsoft.Extensions.Configuration`**: For handling application settings from `AppSettings.json`.
-  * **`Microsoft.Extensions.Hosting`**: To support dependency injection and host management.
+- **C#**: Linguagem principal utilizada.
+- **.NET**: Framework para construção da aplicação de console.
+- **Brapi API**: Utilizada para buscar cotações de ações, devido ao plano gratuito e cobertura da B3.
+- **IHttpClientFactory**: Para gerenciamento eficiente e reutilização de conexões HTTP, evitando `SocketException`.
+- **Cliente SMTP**: Para envio das notificações por e-mail.
+- **Microsoft.Extensions.Configuration**: Para manipulação das configurações da aplicação a partir do `AppSettings.json`.
+- **Microsoft.Extensions.Hosting**: Suporte a injeção de dependência e gerenciamento do host.
 
-## Getting Started
+# Como Começar
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+Siga as instruções abaixo para ter o projeto funcionando para testes.
 
-### Prerequisites
+## Arquivo .exe
 
-  * .NET SDK (compatible with .NET 6 or later)
-  * A Brapi API key (a free tier is available)
-  * An email account configured for SMTP sending (e.g., Gmail with app passwords enabled)
+Baixe o arquivo .exe contido no no ultimo commit da branch master e execute-o em seu computador;
 
-### Installation
+## Clonando Repositório
 
-1.  **Clone the repository:**
+### Pré-requisitos
+
+- .NET SDK (compatível com .NET 6 ou superior)
+- Uma chave de API do Brapi (há um plano gratuito disponível)
+- Uma conta de e-mail configurada para envio SMTP (ex: Gmail com senha de app habilitada)
+
+### Instalação
+
+1. **Clone o repositório:**
 
     ```bash
     git clone https://github.com/GbrLomenha/stock-quote.git
     cd stock-quote
     ```
 
-2.  **Restore NuGet packages:**
+2. **Restaure os pacotes NuGet:**
 
     ```bash
     dotnet restore
     ```
 
-### Configuration
+### Configuração
 
-Before running the application, you need to configure the `AppSettings.json` file with your API key and email settings.
+Antes de executar a aplicação, configure o arquivo `AppSettings.json` com sua chave de API e dados de e-mail.
 
-Create an `AppSettings.json` file in the root directory of the project with the following structure:
+Crie um arquivo `AppSettings.json` na raiz do projeto com a seguinte estrutura:
 
 ```json
 {
     "ApiKey": "BRAPI_API_KEY",
     "EmailConfig": {
-        "SmtpServer": "smtp.your-email-provider.com",
+        "SmtpServer": "smtp.seu-provedor-email.com",
         "SmtpPort": 587,
-        "SmtpUser": "your-email@example.com",
-        "SmtpPassword": "your-email-password",
-        "From": "your-email@example.com",
-        "To": "recipient-email@example.com"
+        "SmtpUser": "seu-email@exemplo.com",
+        "SmtpPassword": "sua-senha-email",
+        "From": "seu-email@exemplo.com",
+        "To": "destinatario@exemplo.com"
     },
     "VerificationInterval": "30"
 }
-
 ```
 
-  * `ApiKey`: Your API key from Brapi.
-  * `EmailConfig`:
-      * `SmtpServer`: Your SMTP server address (e.g., `smtp.gmail.com` for Gmail).
-      * `SmtpPort`: Your SMTP server port (e.g., `587` for TLS/STARTTLS).
-      * `SmtpUser`: The email address used to send alerts.
-      * `SmtpPassword`: The password for the sending email account. If using Gmail, you might need to generate an [App Password](https://support.google.com/accounts/answer/185833?hl=en).
-      * `From`: The "From" email address that will appear in the alerts.
-      * [cite\_start]`To`: The destination email address for the alerts. [cite: 1, 32]
-  * `VerificationInterval`: The interval in minutes between stock quotation checks. [cite\_start]For the free Brapi plan, a minimum of `30` minutes is recommended due to data update frequency. [cite: 73]
+- `ApiKey`: Sua chave de API do Brapi.
+- `EmailConfig`:
+    - `SmtpServer`: Endereço do servidor SMTP (ex: `smtp.gmail.com` para Gmail).
+    - `SmtpPort`: Porta do servidor SMTP (ex: `587` para TLS/STARTTLS).
+    - `SmtpUser`: E-mail utilizado para enviar os alertas.
+    - `SmtpPassword`: Senha do e-mail remetente. Se usar Gmail, pode ser necessário gerar uma [Senha de App](https://support.google.com/accounts/answer/185833?hl=pt-BR).
+    - `From`: E-mail do remetente que aparecerá nos alertas.
+    - `To`: E-mail de destino para os alertas.
+- `VerificationInterval`: Intervalo em minutos entre as verificações de cotação. Para o plano gratuito do Brapi, recomenda-se um mínimo de 30 minutos devido à frequência de atualização dos dados.
 
-### Running the Application
+### Executando a Aplicação
 
-[cite\_start]The application is a console application that takes three command-line arguments: the stock ticker symbol, the purchase price point, and the sale price point. [cite: 1, 25]
+A aplicação é um console que recebe três argumentos: o símbolo do ticker, o ponto de compra e o ponto de venda.
 
 ```bash
-dotnet run <SYMBOL> <PURCHASE_POINT> <SALE_POINT>
+dotnet run <SÍMBOLO> <PONTO_COMPRA> <PONTO_VENDA>
 ```
 
-**Example:**
+**Exemplo:**
 
 ```bash
 dotnet run PETR4 22.67 22.59
 ```
 
-[cite\_start]This command will start monitoring `PETR4` and send purchase alerts if the price drops to or below R$22.59, and sale alerts if the price rises to or above R$22.67. [cite: 1, 30]
+Esse comando irá monitorar o ativo `PETR4` e enviar alertas de compra se o preço cair até ou abaixo de R$22,59, e alertas de venda se o preço subir até ou acima de R$22,67.
 
-## Project Structure
+## Estrutura do Projeto
 
-  * **`Program.cs`**: The entry point of the application, responsible for setting up the host, configuration, dependency injection, and initiating the monitoring process.
-  * **`Quotation.Models`**: Contains data models for API responses (`ApiResponse`, `ApiRootResponse`), stock quotations (`StockQuotation`), and email configuration (`EmailConfig`).
-  * **`Quotation.Services`**: Contains the core logic of the application:
-      * **`StockQuoteService.cs`**: Handles fetching stock quotations from the Brapi API and monitoring price points.
-      * **`EmailService.cs`**: Manages sending email notifications, including purchase, sale, and confirmation emails.
-      * **`InputTreatment.cs`**: Static class for validating and sanitizing command-line input arguments.
+- **`Program.cs`**: Ponto de entrada da aplicação, responsável por configurar o host, as configurações, a injeção de dependências e iniciar o monitoramento.
+- **`Quotation.Models`**: Modelos de dados para respostas da API (`ApiResponse`, `ApiRootResponse`), cotações (`StockQuotation`) e configuração de e-mail (`EmailConfig`).
+- **`Quotation.Services`**: Lógica principal da aplicação:
+    - **`StockQuoteService.cs`**: Busca cotações na API Brapi e monitora os pontos de preço.
+    - **`EmailService.cs`**: Gerencia o envio de e-mails de notificação, incluindo compra, venda e confirmação.
+    - **`InputTreatment.cs`**: Classe estática para validação e sanitização dos argumentos de entrada.
 
-## Design Choices and Best Practices
+## Decisões de Design e Boas Práticas
 
-  * **Dependency Injection**: Utilizes `.NET`'s built-in dependency injection for `IHttpClientFactory`, `StockQuoteService`, and `EmailService` to promote modularity and testability.
-  * [cite\_start]**`IHttpClientFactory`**: Employed to manage `HttpClient` instances, preventing common issues like socket exhaustion and improving resource management. [cite: 70]
-  * [cite\_start]**Separation of Concerns**: Email sending logic is encapsulated in `EmailService` to allow for reuse and maintainability, separate from stock monitoring. [cite: 78, 79]
-  * [cite\_start]**Decimal for Financial Calculations**: `decimal` type is used for all monetary calculations to ensure high precision and avoid rounding errors common with `float` or `double`. [cite: 66]
-  * **Configuration Management**: Application settings are loaded from `AppSettings.json` using `IConfiguration`, allowing for easy modification without recompilation.
-  * **Error Handling**: Includes basic error handling for API requests and email sending, with informative console output.
-  * [cite\_start]**Continuous Monitoring**: The program runs in a continuous loop, periodically checking stock prices. [cite: 1, 35]
+- **Injeção de Dependência**: Utiliza o DI nativo do .NET para `IHttpClientFactory`, `StockQuoteService` e `EmailService`, promovendo modularidade e testabilidade.
+- **IHttpClientFactory**: Gerencia instâncias de `HttpClient`, evitando problemas como exaustão de sockets e melhorando o uso de recursos.
+- **Separação de Responsabilidades**: O envio de e-mails está encapsulado em `EmailService`, facilitando a manutenção e reutilização.
+- **Decimal para Cálculos Financeiros**: O tipo `decimal` é utilizado para garantir precisão em cálculos monetários.
+- **Gerenciamento de Configuração**: As configurações são carregadas do `AppSettings.json` via `IConfiguration`, permitindo fácil modificação sem recompilar.
+- **Tratamento de Erros**: Inclui tratamento básico de erros para requisições à API e envio de e-mails, com mensagens informativas no console.
+- **Monitoramento Contínuo**: O programa roda em loop contínuo, verificando periodicamente os preços das ações.
 
-## Extra Features
+## Funcionalidades Extras
 
-  * [cite\_start]**Confirmation Email on Setup**: An email is sent upon application startup to confirm that the email sending functionality is correctly configured. [cite: 74]
-  * **Formatted Email Content**: Email notifications are HTML-formatted for better readability and include relevant stock information and an icon (if available).
-  * **Input Validation**: Comprehensive validation of command-line arguments to ensure correct usage and prevent errors.
+- **E-mail de Confirmação na Configuração**: Um e-mail é enviado ao iniciar a aplicação para confirmar que o envio de e-mails está funcionando.
+- **Conteúdo de E-mail Formatado**: Notificações por e-mail são formatadas em HTML para melhor leitura e incluem informações relevantes da ação e um ícone (se disponível).
+- **Validação de Entrada**: Validação abrangente dos argumentos de linha de comando para garantir uso correto e evitar erros.
 
-## Future Improvements
+## Melhorias Futuras
 
-  * [cite\_start]**WebSockets for Real-time Data**: Ideally, integrate with an API that supports WebSockets for real-time stock data updates, as HTTP requests are less efficient for continuous monitoring. [cite: 67] [cite\_start](Note: Current API limitations necessitate HTTP polling [cite: 68]).
-  * **Robust Error Logging**: Implement a more sophisticated logging mechanism (e.g., Serilog, NLog) for better error tracking and debugging.
-  * **User Authentication for Email**: Instead of directly using SMTP password, explore more secure authentication methods for email sending (e.g., OAuth2).
-  * **Dynamic Configuration Reloading**: Allow `AppSettings.json` to be reloaded at runtime without restarting the application.
-  * **Multiple Asset Monitoring**: Extend the application to monitor multiple assets simultaneously.
-  * **Database Integration**: Store alert history and configuration in a database.
-  * **User Interface**: Develop a simple GUI or web interface for easier configuration and monitoring.
-  * **Improved Email Templating**: Externalize email templates for easier customization.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
-
-## Contact
-
-Gabriel da Silva Lomenha - gabriellomenha@gmail.com
-
-Project Link: [https://github.com/GbrLomenha/stock-quote](https://github.com/GbrLomenha/stock-quote)
+- **WebSockets para Dados em Tempo Real**: Integrar com uma API que suporte WebSockets para atualização em tempo real das cotações, pois requisições HTTP são menos eficientes para monitoramento contínuo. (Nota: Limitações atuais da API exigem polling via HTTP)
+- **Log de Erros Robusto**: Implementar um sistema de logs mais sofisticado (ex: Serilog, NLog) para melhor rastreamento e depuração.
+- **Autenticação Segura para E-mail**: Explorar métodos mais seguros de autenticação para envio de e-mails (ex: Codigo gerado e enviado no email de inicialização).
+- **Recarregamento Dinâmico de Configuração**: Permitir que o `AppSettings.json` seja recarregado em tempo de execução sem reiniciar a aplicação.
+- **Monitoramento de Múltiplos Ativos**: Permitir monitorar vários ativos simultaneamente.
+- **Integração com Banco de Dados**: Armazenar histórico de alertas e configurações em um banco de dados.
+- **Interface de Usuário**: Desenvolver uma interface gráfica ou web para facilitar a configuração e o monitoramento.
