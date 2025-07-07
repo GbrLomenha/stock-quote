@@ -11,6 +11,9 @@ class Program
     {
         Console.WriteLine($"Inicializing Stock Quote Service... to {args[0]}");
 
+        // Validate input arguments
+        var (Symbol, PurchasePoint, SalePoint) = InputTreatment.SanitizeInput(args);
+
         // Create Host
         var host = Host.CreateDefaultBuilder()
             .ConfigureAppConfiguration((hostingContext, config) =>
@@ -29,12 +32,8 @@ class Program
         EmailService emailService = host.Services.GetRequiredService<EmailService>();
         await emailService.ConfirmEmailToSendOnSetup();
 
-        // Validate arguments
-        decimal PurchasePoint = decimal.Parse(args[1]);
-        decimal SalePoint = decimal.Parse(args[2]);
-
         // Start Stock Quote Service
         var StockQuoteService = host.Services.GetRequiredService<StockQuoteService>();
-        await StockQuoteService.MonitorStockQuotation(args[0], PurchasePoint, SalePoint);
+        await StockQuoteService.MonitorStockQuotation(Symbol, PurchasePoint, SalePoint);
     }
 }
