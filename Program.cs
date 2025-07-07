@@ -1,9 +1,7 @@
-﻿using Quotation.Models;
-using Quotation.Services;
+﻿using Quotation.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
 class Program
 {
